@@ -1,0 +1,26 @@
+name: gromacs
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - gromacs=2022
+  - nglview
+  - mdtraj
+  - notebook
+  - numpy
+  - requests
+  - pandas
+  - matplotlib
+  - compilers
+  - openmpi
+  - cmake
+  - biopython
+  - tqdm
+  - traitlets
+  - ipywidgets
+  - biopandas
+  - ocl-icd-system
+  - pocl
+  - ocl-icd
+  - clinfo
+  - propka
