@@ -1,53 +1,81 @@
+# Molecular Dynamics Analysis of Protein Stability (2K6M)
 
-# Project info
+## Project Overview
+This project investigates the stability of the Human Supervillin Headpiece (PDB: 2K6M) using Molecular Dynamics (MD) simulations. The primary goal is to determine how **temperature influences protein stability** by tracking structural deviations across multiple simulations.
 
+Inspired by [Motono et al. (2022)](https://doi.org/10.1093/bioinformatics/btab538), which proposed a contact frequency-based stability evaluation method for point mutations, this study explores whether the same method can be applied to temperature-dependent stability assessments. Instead of comparing two different mutants, we compare the same protein at **different temperatures** to identify conditions that induce significant motion **without causing unfolding**.
 
-In 2022 [Motono et al.](https://doi.org/10.1093/bioinformatics/btab538) published a method for evaluating protein stability of a point mutant by comparing the contact frequency of two MD trajectories. The method reqires two trajectories to compare and in the article these are trajectories from two different variants (differing by one mutation). 
+This approach allows us to **pre-screen protein designs computationally**, reducing laboratory screening costs and time.
 
-For this project I want to see whether the method can be used to evaluate the stability of a protein. The trajectories I choose to compare are thus ones made with the same protien, but at different temperatures. However, arbitrarily picking a temperature is not ideal. I therefore go through and simulate several temperatures. I want to find a high temperature at which there is significant movement in the protein, without it unfolding. Applying computational methods for evaluating the fitness of protein designs can save considerable time and capital, by serving as a filter before variants are tested in the laboratory. 
+---
 
-In this project I carry out MD simulations of Human Supervillin Headpiece (2K6M) at different temperatures. Two of these will be used to evaluate its stability. The 2K6M structure is a solution NMR structure, which can be used to evaluate the result of the MD simulations.
+## Simulation Details
+- **Protein:** Human Supervillin Headpiece (PDB: 2K6M)  
+- **Force Field:** CHARMM27  
+- **Water Model:** TIP3P  
+- **Ionic Conditions:** 0.15 M NaCl (Na⁺ and Cl⁻ ions)  
+- **Temperature Range:** 300K - 370K (in 10K increments)  
+- **Simulation Software:** GROMACS 2022  
+- **Analysis Tools:** `mdtraj`, `Bio.PDB`, `matplotlib`, `pandas`  
 
-For further details, plase refer to the document `./docs/final_report.pdf`.
+The **trajectories** from different temperatures are analyzed to determine the optimal high-temperature condition where the protein undergoes substantial motion **without unfolding**.
 
+---
 
-# Project organization
-    ├── determine_stability.ipynb        <- Main notebook for analysis
-    ├── environment.yml                  <- Specefication of conda environment
-    ├── README.md                        <- This readme
-    │
-    ├── code
-    │   ├── mdcontactcom                 <- Folder containing heavily modified scrips originally from https://gitlab.com/chiemotono/mdcontactcom
-    │   └── utils.py                     <- Helper functions for notebook
-    │
-    ├── data
-    │   ├── params                       <- Folder holding parameters for the simulations
-    │   ├── final                        <- Folder holding output files of processed data
-    │   ├── processed                    <- Folder holding intermediate data that has been transformed
-    │   └── raw                          <- Folder holding raw unmodified data
-    │
-    ├── docs                             <- Folder holding the referenced articles as well as the project report
-    └── figures                          <- Folder holding figures produced in notebook    
+## Project Organization
+```
+├── determine_stability.ipynb        <- Main notebook for analysis
+├── environment.yml                  <- Conda environment file
+├── README.md                        <- This readme
+│
+├── code
+│   ├── mdcontactcom                 <- Modified scripts from https://gitlab.com/chiemotono/mdcontactcom
+│   └── utils.py                     <- Helper functions for analysis
+│
+├── data
+│   ├── params                       <- Simulation parameter files
+│   ├── final                        <- Processed data outputs
+│   ├── processed                    <- Intermediate transformed data
+│   └── raw                          <- Raw input files (e.g., original PDB structure)
+│
+├── docs                             <- Referenced articles and project report
+└── figures                          <- Figures produced in the notebook
+```
 
+---
 
+## Reproducing the Analysis
 
-# Reproducing the analysis
+The analysis was carride out on a Linux system. Running the notebook on a Windows system is not recommended.
 
-Requrements include GROMACS 2022, python modules: numpy, matplotlib, re, nglviewer, md_traj, pandas. For a full list of installed libraries, and their versions, refer to the printout at the beginning of the notebook in the `code` folder.
+### 1. Install Dependencies
+The analysis requires **GROMACS 2022** and several Python libraries. The easiest way to install them is using **Conda**.
 
-The most expedient route is to set up the environment using conda (https://docs.conda.io/en/latest/), and activate.
 ```bash
 conda env create -f environment.yml 
 conda activate gromacs
 ```
 
-Download the input structure.
+Alternatively, you can manually install dependencies:
+```bash
+pip install numpy matplotlib pandas mdtraj nglview
+```
+
+### 2. Download Input Structure
 ```bash
 wget -O ./data/raw/2k6m.pdb "https://files.rcsb.org/download/2K6M.pdb"
 ```
 
-Move to the code directory and fire up the notebook.
+### 3. Run the Notebook
 ```bash
 cd code
 jupyter-notebook
 ```
+
+
+## References
+- Motono, C., et al. (2022). "Contact frequency-based analysis of protein stability in molecular dynamics simulations." *Bioinformatics*. [DOI: 10.1093/bioinformatics/btab538](https://doi.org/10.1093/bioinformatics/btab538)
+- GROMACS Documentation: [https://manual.gromacs.org/](https://manual.gromacs.org/)
+
+---
+
