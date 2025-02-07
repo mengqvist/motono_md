@@ -74,7 +74,7 @@ jupyter-notebook
 
 
 ## References
-- Motono, C., et al. (2022). "Contact frequency-based analysis of protein stability in molecular dynamics simulations." *Bioinformatics*. [DOI: 10.1093/bioinformatics/btab538](https://doi.org/10.1093/bioinformatics/btab538)
+- Motono, C., et al. (2022). "MDContactCom: a tool to identify differences of protein molecular dynamics from two MD simulation trajectories in terms of interresidue contacts" *Bioinformatics*. [DOI: 10.1093/bioinformatics/btab538](https://doi.org/10.1093/bioinformatics/btab538)
 - GROMACS Documentation: [https://manual.gromacs.org/](https://manual.gromacs.org/)
 
 ---
