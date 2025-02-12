@@ -1,3 +1,7 @@
+# ignore data directory files that are too large to commit
+data/processed/
+data/final/*k.pdb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
